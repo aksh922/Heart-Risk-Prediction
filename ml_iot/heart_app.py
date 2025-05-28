@@ -13,21 +13,28 @@ st.write("Enter your health information below:")
 age = st.number_input("Age", min_value=1, max_value=120, value=45)
 sex = st.selectbox("Sex", ["M", "F"])
 chest_pain = st.selectbox("Chest Pain Type", ["TA", "ATA", "NAP", "ASY"])
-chol = st.number_input("Cholesterol (mg/dL)", min_value=0, value=200)
+resting_bp = st.number_input("Resting Blood Pressure", min_value=80, max_value=200, value=120)
+chol = st.number_input("Cholesterol (mg/dL)", min_value=100, max_value=600, value=200)
+fasting_bs = st.selectbox("Fasting Blood Sugar > 120 mg/dL", ["0", "1"])
+rest_ecg = st.selectbox("Resting ECG", ["Normal", "ST", "LVH"])
 max_hr = st.number_input("Maximum Heart Rate Achieved", min_value=60, max_value=220, value=150)
 exercise_angina = st.selectbox("Exercise Induced Angina", ["Y", "N"])
-
-# Add all other fields you used during training below if any (e.g., RestingBP, FastingBS, etc.)
+oldpeak = st.number_input("Oldpeak (ST depression)", min_value=0.0, max_value=10.0, value=1.0)
+st_slope = st.selectbox("ST Slope", ["Up", "Flat", "Down"])
 
 # Prepare input dictionary
 input_dict = {
     "Age": age,
     "Sex": sex,
     "ChestPainType": chest_pain,
+    "RestingBP": resting_bp,
     "Cholesterol": chol,
+    "FastingBS": int(fasting_bs),
+    "RestingECG": rest_ecg,
     "MaxHR": max_hr,
     "ExerciseAngina": exercise_angina,
-    # Add other inputs here...
+    "Oldpeak": oldpeak,
+    "ST_Slope": st_slope
 }
 
 input_df = pd.DataFrame([input_dict])
